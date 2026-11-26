@@ -1,20 +1,36 @@
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { createClient } from "@supabase/supabase-js";
 import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { FieldValue, Timestamp, getFirestore } from "firebase-admin/firestore";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
+let serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT_JSON?.trim();
+
+if (!serviceAccountJson) {
+  const localFile = join(process.cwd(), "serviceaccount.json");
+  if (existsSync(localFile)) {
+    serviceAccountJson = readFileSync(localFile, "utf8");
+  }
+}
 
 if (!supabaseUrl || !supabaseServiceRoleKey || !serviceAccountJson) {
   throw new Error(
-    "Set NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, and FIREBASE_SERVICE_ACCOUNT_JSON before migration.",
+    "Set NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, and FIREBASE_SERVICE_ACCOUNT_JSON (or provide serviceaccount.json) before migration.",
   );
 }
 
 let serviceAccount;
 try {
-  serviceAccount = JSON.parse(serviceAccountJson);
+  let jsonStr = serviceAccountJson;
+  if (
+    (jsonStr.startsWith("'") && jsonStr.endsWith("'")) ||
+    (jsonStr.startsWith('"') && jsonStr.endsWith('"'))
+  ) {
+    jsonStr = jsonStr.slice(1, -1).trim();
+  }
+  serviceAccount = JSON.parse(jsonStr);
 } catch {
   throw new Error("FIREBASE_SERVICE_ACCOUNT_JSON must contain valid JSON.");
 }
@@ -33,7 +49,7 @@ const app =
     credential: cert({
       projectId: serviceAccount.project_id,
       clientEmail: serviceAccount.client_email,
-      privateKey: serviceAccount.private_key,
+      privateKey: serviceAccount.private_key.replace(/\\n/g, "\n"),
     }),
   });
 const firestore = getFirestore(app);
