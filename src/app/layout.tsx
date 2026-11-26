@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-// @ts-expect-error: Next.js resolves global CSS imports through its bundler.
 import "./globals.css";
 import { business } from "@/config/business";
 

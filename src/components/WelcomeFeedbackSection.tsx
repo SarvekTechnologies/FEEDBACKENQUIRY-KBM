@@ -140,16 +140,19 @@ export default function WelcomeFeedbackSection() {
             Details successfully received
           </div>
           <span className="text-xs font-mono text-stone-400">
-            Ref: <span className="text-stone-700 font-semibold">{registrationId}</span>
+            Ref:{" "}
+            <span className="text-stone-700 font-semibold">
+              {registrationId}
+            </span>
           </span>
         </div>
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-stone-900 tracking-tight">
           Dhanyavaad, {customerName}!
         </h1>
         <p className="mt-2 text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl">
-          Krishna Building Material par aane ke liye aapka bahut-bahut dhanyavaad.
-          Aapka experience humare liye bahut important hai. Humein batayein ki
-          humari service kaisi rahi.
+          Krishna Building Material par aane ke liye aapka bahut-bahut
+          dhanyavaad. Aapka experience humare liye bahut important hai. Humein
+          batayein ki humari service kaisi rahi.
         </p>
       </section>
 
@@ -176,16 +179,16 @@ export default function WelcomeFeedbackSection() {
                   Aapka Feedback Successfully Save Ho Gaya!
                 </h3>
                 <p className="text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
-                  Aapke kimti sujhav ke liye Krishna Building Material parivar ki
-                  taraf se dher saara dhanyavaad.
+                  Aapke kimti sujhav ke liye Krishna Building Material parivar
+                  ki taraf se dher saara dhanyavaad.
                 </p>
               </div>
 
               {rating >= 4 ? (
                 <div className="pt-4 border-t border-stone-200/80 mt-4 space-y-3">
                   <p className="text-xs text-stone-500 max-w-sm mx-auto">
-                    Aapka anubhav accha raha! Kripya Google par bhi 1 minute nikaal
-                    kar apna review share karein:
+                    Aapka anubhav accha raha! Kripya Google par bhi 1 minute
+                    nikaal kar apna review share karein:
                   </p>
                   <div>
                     <a
@@ -203,14 +206,14 @@ export default function WelcomeFeedbackSection() {
               ) : (
                 <div className="pt-4 border-t border-stone-200/80 mt-4 space-y-3">
                   <p className="text-xs text-stone-500 max-w-sm mx-auto">
-                    Humein dukh hai ki aapka anubhav poori tarah santushtijanak nahi
-                    raha. Kripya humari team se seedhe connect karein taaki hum ise
-                    theek kar sakein:
+                    Humein dukh hai ki aapka anubhav poori tarah santushtijanak
+                    nahi raha. Kripya humari team se seedhe connect karein taaki
+                    hum ise theek kar sakein:
                   </p>
                   <div>
                     <a
                       href={whatsappLink(
-                        `Namaste Krishna Building Material team, maine feedback submit kiya tha (${rating}/5). Mai aapse baat karna chahta hoon.`
+                        `Namaste Krishna Building Material team, maine feedback submit kiya tha (${rating}/5). Mai aapse baat karna chahta hoon.`,
                       )}
                       target="_blank"
                       rel="noreferrer"
@@ -228,7 +231,8 @@ export default function WelcomeFeedbackSection() {
               {/* Star Rating */}
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-stone-800">
-                  Rating dein (1 se 5 stars) <span className="text-red-500">*</span>
+                  Rating dein (1 se 5 stars){" "}
+                  <span className="text-red-500">*</span>
                 </label>
                 <div className="p-2 sm:p-2.5 bg-stone-50 border border-stone-200/80 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div
@@ -378,8 +382,8 @@ export default function WelcomeFeedbackSection() {
                     Google par apna experience share karein
                   </h3>
                   <p className="text-xs text-stone-500 leading-relaxed mt-1">
-                    Aapka review doosre customers ko hum par bharosa karne mein madad
-                    karta hai.
+                    Aapka review doosre customers ko hum par bharosa karne mein
+                    madad karta hai.
                   </p>
                   <a
                     href={business.googleReviewUrl}
@@ -428,7 +432,8 @@ export default function WelcomeFeedbackSection() {
             </h3>
             <p className="mt-2 text-xs sm:text-sm text-stone-300 leading-relaxed">
               Krishna Building Material mein aapko tiles, granite, marble,
-              bathroom fittings aur building materials ki quality range milti hai.
+              bathroom fittings aur building materials ki quality range milti
+              hai.
             </p>
             <div className="mt-5 flex flex-col gap-2.5">
               <a
