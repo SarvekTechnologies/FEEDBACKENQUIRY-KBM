@@ -14,7 +14,7 @@ A responsive business website using Next.js App Router, TypeScript, Tailwind CSS
 - Supabase-to-Firebase migration script for existing records and staff roles
 
 ## Run locally
-1. Install Node.js 20.9+.
+1. Install Node.js 22.12+ (Firebase Admin and its JOSE dependency require this runtime).
 2. Create a Firebase project. Enable Email/Password in Authentication and create the Firestore database and Storage bucket.
 3. Add staff accounts in Firebase Authentication. In Firestore, create a `staffRoles/{lowercase-email}` document for each staff account with fields such as `{ "email": "staff@example.com", "full_name": "Staff Name", "role": "staff" }`. Use `admin` for administrators.
 4. In Firebase Console, create a service-account key for server-side access. You can place the downloaded JSON file in the project root as `serviceaccount.json`; this filename is ignored by Git. Alternatively, keep the file outside the project and set `GOOGLE_APPLICATION_CREDENTIALS` to its absolute path in `.env.local`. You can also set `FIREBASE_SERVICE_ACCOUNT_JSON` to the complete service-account JSON on one line. Set only one of these credential options. Copy the Firebase web app's API key, auth domain, project ID, and app ID into the corresponding `NEXT_PUBLIC_FIREBASE_*` variables.
